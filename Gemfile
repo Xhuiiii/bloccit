@@ -27,5 +27,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 #Turbolinks makes following links in the web app faster
 gem 'turbolinks'
+gem 'bootstrap-sass'
 
 
