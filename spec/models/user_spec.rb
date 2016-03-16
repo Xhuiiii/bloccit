@@ -106,8 +106,8 @@ RSpec.describe User, type: :model do
     it "returns the appropriate favorite if it exists" do
       if user != @post.user
         favorite = user.favorites.where(post: @post).create
-      else 
-        favorite = @post.user.favorites.find_by_post_id(@post.id)
+      else
+        favorite = user.favorites.find_by_post_id(@post.id)
       end
       expect(user.favorite_for(@post)).to eq(favorite)
     end
