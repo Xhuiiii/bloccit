@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 	after_create :create_vote
-	after_create :favorite_own
+	after_create :create_favorite
 
 	belongs_to :topic
 	belongs_to :user
@@ -44,7 +44,7 @@ class Post < ActiveRecord::Base
 		user.votes.create(value: 1, post: self)
 	end
 
-	def favorite_own
+	def create_favorite
 		Favorite.create(post: self, user: self.user)
 		FavoriteMailer.new_post(self).deliver_now
 	end
