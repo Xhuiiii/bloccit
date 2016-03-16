@@ -3,14 +3,15 @@ class FavoritesController < ApplicationController
 
 	def create
 		post = Post.find(params[:post_id])
-		favorite = current_user.favorites.build(post: post)
+		if current_user != post.user
+			favorite = current_user.favorites.build(post: post)
 
-		if favorite.save
-			flash[:notice] = "Post favorited."
-		else
-			flash[:alert] = "Favoriting failed."
+			if favorite.save
+				flash[:notice] = "Post favorited."
+			else
+				flash[:alert] = "Favoriting failed."
+			end
 		end
-
 		redirect_to [post.topic, post]
 	end
 
@@ -23,7 +24,6 @@ class FavoritesController < ApplicationController
 		else
 			flash[:alert] = "Unfavoriting failed."
 		end 
-
 		redirect_to [post.topic, post]
 	end
 end
