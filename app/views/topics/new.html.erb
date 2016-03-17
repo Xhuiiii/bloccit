@@ -9,10 +9,12 @@
 			<li>Smile when you type</li>
 		</ul>
 	</div>
-	<div class="col-md-8">
-		<%= render partial: 'form', locals: {topic: @topic} %>
-	</div>
-	<div class="form-group">
-		<%= render partial: 'labels/form', locals: {f: f, labels: @topic.labels} %>
-	</div>
+	<%= form_for @topic do |f| %>
+		<div class="col-md-8">
+			<%= render partial: 'form', locals: {topic: @topic} %>
+		</div>
+		<div class="form-group">
+			<%= render partial: 'labels/form', locals: {f: f, labels: @topic.labels} %>
+		</div>
+	<% end %>
 </div>
